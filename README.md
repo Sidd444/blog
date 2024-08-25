@@ -1,6 +1,6 @@
 # Blog Website
 
-[Deployed Application](https://blog-server-red-iota.vercel.app/)
+## [Deployed Application](https://blog-server-red-iota.vercel.app/)
 
 ## Overview
 
