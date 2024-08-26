@@ -12,7 +12,7 @@ const Home = () => {
         Welcome to the Blog Website!
       </h2>
       {posts.length === 0 ? (
-        <p className="text-center text-gray-500">Loading Posts.....</p>
+        <p className="text-center text-gray-500">If Posts don't appear then Relogin to the site</p>
       ) : (
         <div className="space-y-8 max-h-[70vh] overflow-y-auto">
           {posts.map((post) => (
