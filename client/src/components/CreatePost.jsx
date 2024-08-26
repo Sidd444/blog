@@ -3,6 +3,7 @@ import axios from 'axios';
 import SERVER_URL from '../config';
 import { AuthContext } from '../contexts/AuthContext';
 import { PostContext } from '../contexts/PostContext';
+import {toast} from 'react-hot-toast'
 
 const CreatePost = () => {
   const { user,token } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let author=user._id; console.log(user.data);
+    let author=user._id; 
     try {
       const newPost = { title, content, excerpt, author };
       await axios.post(`${SERVER_URL}/api/posts`, newPost, {
@@ -21,7 +22,7 @@ const CreatePost = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert('Post created successfully by '+user.name);
+      toast.success('Post created successfully by '+user.name);
       posts.push(newPost);
       setTitle('');
       setContent('');

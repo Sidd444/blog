@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import {toast} from 'react-hot-toast'
 
 const Login = () => {
     const { login } = useContext(AuthContext);
@@ -13,8 +14,10 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(email, password);
+            toast.success("Login Succesful");
             navigate('/');
         } catch (err) {
+            toast.error("Login failed");
             setError('Invalid email or password');
         }
     };

@@ -1,71 +1,76 @@
-// const Post = require('../models/Post');
+const Post = require('../models/Post');
 
-// // Get all posts
-// exports.getPosts = async (req, res) => {
-//     try {
-//         const posts = await Post.find().populate('author', 'name');
-//         res.json(posts);
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error fetching posts', error: err });
-//     }
-// };
 
-// // Get a specific post
-// exports.getPostById = async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//         const post = await Post.findById(id).populate('author', 'name');
-//         if (!post) {
-//             return res.status(404).json({ message: 'Post not found' });
-//         }
-//         res.json(post);
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error fetching post', error: err });
-//     }
-// };
+exports.createPost = async (req, res) => {
+  const newPost = new Post(req.body);
+  try {
+    const post = await newPost.save();
+    res.status(201).json(post);
+  } catch (err) {
+    console.log("server error " + err);
+    res.status(400).json({ error: err.message });
+  }
+};
 
-// // Create a new post
-// exports.createPost = async (req, res) => {
-//     const { title, content, excerpt } = req.body;
-//     try {
-//         const post = new Post({
-//             title,
-//             content,
-//             excerpt,
-//             author: req.user.id
-//         });
-//         await post.save();
-//         res.status(201).json(post);
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error creating post', error: err });
-//     }
-// };
+exports.getAllPosts = async (req, res) => {
+  try {
+    const posts = await Post.find().populate('author', 'name');
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
 
-// // Update a post
-// exports.updatePost = async (req, res) => {
-//     const { id } = req.params;
-//     const { title, content, excerpt } = req.body;
-//     try {
-//         const post = await Post.findByIdAndUpdate(id, { title, content, excerpt }, { new: true });
-//         if (!post) {
-//             return res.status(404).json({ message: 'Post not found' });
-//         }
-//         res.json(post);
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error updating post', error: err });
-//     }
-// };
+exports.getPostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).send({ message: 'Post not found' });
+    }
+    res.json(post);
+  } catch (error) {
+    res.status(500).send({ message: 'Error fetching post' });
+  }
+};
 
-// // Delete a post
-// exports.deletePost = async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//         const post = await Post.findByIdAndDelete(id);
-//         if (!post) {
-//             return res.status(404).json({ message: 'Post not found' });
-//         }
-//         res.json({ message: 'Post deleted successfully' });
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error deleting post', error: err });
-//     }
-// };
+exports.updatePostById = async (req, res) => {
+  console.log("server reached");
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+    if (post.author.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'User not authorized' });
+    }
+    post.title = req.body.title || post.title;
+    post.content = req.body.content || post.content;
+    post.excerpt = req.body.excerpt || post.excerpt;
+    await post.save();
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+exports.deletePostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      console.log("Post not found");
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    if (post.author.toString() !== req.user.id) {
+      console.log("User not authorized");
+      return res.status(403).json({ error: 'User not authorized' });
+    }
+
+    await Post.findByIdAndDelete(req.params.id);
+    console.log("Post deleted successfully");
+    res.status(200).json({ message: 'Post deleted' });
+  } catch (err) {
+    console.error("Error deleting post:", err.message);
+    res.status(400).json({ error: err.message });
+  }
+};

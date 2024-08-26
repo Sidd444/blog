@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
      setUser(userRes.data); 
   };
 
-  const signup = async (name, email, password) => {
+  const signup = async (name, email, password) => { 
     try {
       const res = await axios.post(
         `${SERVER_URL}/api/users/signup`,
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
           email,
           password,
         }
-      );
+      ); 
       localStorage.setItem("token", res.data.token);
       axios.defaults.headers.common[
         "Authorization"

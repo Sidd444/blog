@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import {toast} from 'react-hot-toast'
 
 const Signup = () => {
     const { signup } = useContext(AuthContext);
@@ -14,8 +15,10 @@ const Signup = () => {
         e.preventDefault();
         try {
             await signup(name, email, password);
+            toast.success("Sign up successful");
             navigate('/login');
         } catch (err) { 
+            toast.error("sign up error");
             setError(err.response?.data?.message || 'Error signing up');
         }
     };
