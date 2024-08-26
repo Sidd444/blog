@@ -10,13 +10,16 @@ import PostProvider from './contexts/PostContext';
 import PostsList from './components/PostsList';
 import PostDetail from './components/PostDetail';
 import CreatePost from './components/CreatePost';
+import Footer from './components/Footer';
+import './App.css'
 
 function App() {
   return (
     <AuthProvider>
       <PostProvider>
         <Router>
-          <div className="flex">
+        <div className="flex flex-col min-h-screen bg-gray-900">
+          <div className="flex bg-gray-900">
             <Sidebar />
             <div className="flex-1 flex flex-col">
               <Navbar />
@@ -31,6 +34,8 @@ function App() {
                 </Routes>
               </div>
             </div>
+          </div>
+          <Footer/>
           </div>
         </Router>
       </PostProvider>

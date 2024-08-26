@@ -5,6 +5,7 @@ import routes from '../routes';
 
 const Home = () => {
   const { posts } = useContext(PostContext);
+  
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
@@ -13,13 +14,13 @@ const Home = () => {
       {posts.length === 0 ? (
         <p className="text-center text-gray-500">Loading Posts.....</p>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-8 max-h-[70vh] overflow-y-auto">
           {posts.map((post) => (
-            <div key={post.id} className="bg-white p-6 rounded-xl shadow-md border border-gray-300 transition-transform transform hover:scale-105">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{post.title}</h3>
-              <p className="text-gray-800 mb-4">{post.content}</p>
-              <p className="text-gray-600 mb-4 italic">{post.excerpt}</p>
-              <p className="text-sm text-gray-500 mb-2">
+            <div key={post.id} className="bg-black p-6 rounded-xl shadow-md border-2 border-gray-300 border-3 transition-transform transform hover:scale-105 bg-gradient-to-r from-red-600 via-pink-600 to-yellow-600">
+              <h3 className="text-2xl font-bold text-white mb-2">{post.title}</h3>
+              <p className="text-gray-100 mb-4">{post.content}</p>
+              <p className="text-gray-200 mb-4 italic">{post.excerpt}</p>
+              <p className="text-sm text-gray-300 mb-2">
                 Created by <span className="font-semibold">{post.author.name}</span> on {new Date(post.createdAt).toLocaleString()}
               </p>
               {/* <Link 
@@ -35,5 +36,6 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;

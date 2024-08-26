@@ -19,7 +19,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="bg-gray-700 text-white w-64 h-screen flex flex-col justify-between p-4">
+    <aside className="bg-blue-900 text-white font-bold w-64 flex flex-col justify-between p-4">
       <nav>
         <Link to={routes.home} className="block py-2">Home</Link>
         {!user && (

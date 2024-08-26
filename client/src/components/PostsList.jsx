@@ -40,7 +40,7 @@ const PostList = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">My Posts</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white">My Posts</h2>
       {isEditing ? (
         <form onSubmit={handleUpdate} className="mb-6 p-4 border border-gray-300 rounded-lg shadow-md">
           <input
@@ -73,20 +73,20 @@ const PostList = () => {
         </form>
       ) : (
         posts.filter(post => post.author._id === user._id).map((post) => (
-          <div key={post._id} className="mb-6 p-4 border border-gray-300 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-            <p className="text-gray-700 mb-2">{post.content}</p>
-            <p className="text-gray-500 mb-4">{post.excerpt}</p>
+          <div key={post._id} className="mb-6 p-4 border border-gray-300 rounded-lg shadow-md bg-gradient-to-r from-violet-600 via-pink-600 to-yellow-600">
+            <h3 className="text-xl font-semibold mb-2 text-white">{post.title}</h3>
+            <p className="text-white mb-2">{post.content}</p>
+            <p className="text-White mb-4">{post.excerpt}</p>
             <div className="flex space-x-4">
               <button
                 onClick={() => handleEdit(post)}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 border-2"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(post._id)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 border-2"
               >
                 Delete
               </button>
