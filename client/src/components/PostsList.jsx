@@ -11,11 +11,10 @@ const PostList = () => {
   const [currentPost, setCurrentPost] = useState(null);
 
   const handleDelete = (id) => {
-    console.log("user " + token);
     if (!user) return;
     if (window.confirm("Are you sure you want to delete this post?")) {
       deletePost(id, token);
-      toast.success("post deleted");
+      
     }
   };
 

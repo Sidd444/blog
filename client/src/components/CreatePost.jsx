@@ -28,6 +28,7 @@ const CreatePost = () => {
       setContent('');
       setExcerpt('');
     } catch (err) {
+      toast.error("Please Login again");
       console.error("client error "+err);
     }
   };

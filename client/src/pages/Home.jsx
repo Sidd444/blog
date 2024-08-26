@@ -11,7 +11,7 @@ const Home = () => {
         Welcome to the Blog Website!
       </h2>
       {posts.length === 0 ? (
-        <p className="text-center text-gray-500">No posts to show</p>
+        <p className="text-center text-gray-500">Loading Posts.....</p>
       ) : (
         <div className="space-y-8">
           {posts.map((post) => (

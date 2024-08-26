@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import SERVER_URL from "../config";
-
+import {toast} from 'react-hot-toast'
 
 export const PostContext = createContext();
 
@@ -38,7 +38,9 @@ const PostProvider = ({ children }) => {
         },
       });
       setPosts(posts.map(post => post._id === id ? res.data : post));
+      toast.success("post eddited")
     } catch (error) {
+      toast.error("please Relogin")
       console.error("Error updating post", error);
     }
   };
@@ -51,7 +53,9 @@ const PostProvider = ({ children }) => {
         },
       });
       setPosts(posts.filter(post => post._id !== id));
+      toast.success("post deleted");
     } catch (error) {
+      toast.error("please relogin")
       console.error("Error deleting post", error);
     }
   };

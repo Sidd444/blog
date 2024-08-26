@@ -1,7 +1,7 @@
-
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import SERVER_URL from "../config";
+import routes from '../routes';
 
 export const AuthContext = createContext();
 
@@ -66,6 +66,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
     setUser(null);
+    window.location.href = routes.home;
   };
 
   return (
