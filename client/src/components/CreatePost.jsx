@@ -34,7 +34,8 @@ const CreatePost = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-6">
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-6 h-screen">
+      <p className="text-center font-bold text-2xl">Create Your Post</p>
       <input
         type="text"
         value={title}
