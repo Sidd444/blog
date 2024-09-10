@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {toast} from 'react-hot-toast'
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const { signup } = useContext(AuthContext);
@@ -54,7 +55,7 @@ const Signup = () => {
                 />
                 <button type="submit" className="w-full bg-green-600 text-white p-2 rounded">Sign Up</button>
                 <p className="mt-4 text-white">
-                    Already have an account? <a href="/login" className="text-blue-500">Log in</a>
+                    Already have an account? <Link href="/login" className="text-blue-500">Log in</Link>
                 </p>
             </form>
         </div>
