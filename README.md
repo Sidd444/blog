@@ -1,8 +1,6 @@
 # Blog Website
 
-## [Demo Video Link](https://drive.google.com/file/d/13vbbaZYIEptMIpCzqDHvKgrNjUwD91Wv/view?usp=drive_link)
-
-## [Deployed Application](https://blog-server-red-iota.vercel.app/)
+## [Demo Video Link](https://drive.google.com/file/d/13vbbaZYIEptMIpCzqDHvKgrNjUwD91Wv/view?usp=drive_link)      ## [Deployed Application](https://blog-server-red-iota.vercel.app/)
 
 ## Overview
 
