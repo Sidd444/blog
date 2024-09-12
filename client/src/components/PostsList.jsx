@@ -39,7 +39,7 @@ const PostList = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4" style={{height:"80vh"}}>
       <h2 className="text-2xl font-bold mb-4 text-white">My Posts</h2>
       {isEditing ? (
         <form onSubmit={handleUpdate} className="mb-6 p-4 border border-gray-300 rounded-lg shadow-md">
